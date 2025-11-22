@@ -72,7 +72,7 @@ Hệ thống **Quản lý Hồ sơ Sinh viên và Điểm số** được xây d
 ### Trang Quản lý Điểm số
 <img width="1654" height="945" alt="image" src="https://github.com/user-attachments/assets/ec6e2b5f-c990-4ae0-85d7-84bd01f13673" />
 
-## Trang Quản Lý Lớp Học
+### Trang Quản Lý Lớp Học
 <img width="1656" height="951" alt="image" src="https://github.com/user-attachments/assets/8b9b6aef-e5a4-44ee-8971-f45d04bc87d5" />
 
 ## ⚙️ 4. Hướng dẫn cài đặt
