@@ -146,7 +146,7 @@ include './sidebar.php';
                                 <?= number_format($grade["grade"], 1) ?>
                             </td>
                             <td><?= $grade["term"] ?></td>
-                            <?php if ($isTeacher): ?>
+                            <?php if ($isTeacher || $isAdmin): ?>
                                 <td>
                                     <a href="grade/edit_grade.php?id=<?= $grade['id'] ?>" class="btn btn-warning btn-sm" title="Chỉnh sửa">
                                         <i class="bi bi-pencil"></i>

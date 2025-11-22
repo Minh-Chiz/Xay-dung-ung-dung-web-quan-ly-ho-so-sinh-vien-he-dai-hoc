@@ -1,25 +1,33 @@
-</div> </div> <footer class="footer">
+</div> </div> 
+    
+    <footer class="footer">
         Copyright © 2025 - Nhóm 15 - FITDNU
     </footer>
 
-    <script src="[https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js](https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js)"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <?php
+        // Tính toán đường dẫn JS dựa trên độ sâu thư mục (giống sidebar.php)
+        $jsPathPrefix = (strpos($_SERVER['PHP_SELF'], '/views/student/') !== false ||
+                    strpos($_SERVER['PHP_SELF'], '/views/class/') !== false ||
+                    strpos($_SERVER['PHP_SELF'], '/views/subject/') !== false ||
+                    strpos($_SERVER['PHP_SELF'], '/views/grade/') !== false) ? '../../' : '../';
+    ?>
+    <script src="<?php echo $jsPathPrefix; ?>js/main.js"></script>
+
     <script>
-    // Script tự động ẩn thông báo
+    // Script tự động ẩn thông báo (giữ nguyên logic cũ của bạn nhưng viết gọn hơn)
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => {
             let alertNode = document.querySelector('.alert-dismissible');
-            // Kiểm tra xem bootstrap có sẵn chưa
             if (typeof bootstrap !== 'undefined' && alertNode) {
-                // Sử dụng new bootstrap.Alert thay vì getOrCreateInstance để đảm bảo nó hoạt động
                 let bsAlert = new bootstrap.Alert(alertNode);
-                if (bsAlert) {
-                    bsAlert.close();
-                }
+                bsAlert.close();
             }
-        }, 3000); // 3 giây
+        }, 4000); // Tăng lên 4 giây cho dễ đọc
     });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
