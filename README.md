@@ -1,2 +1,4 @@
-[🎓 Faculty of Information Technology (DaiNam University)](https://dainam.edu.vn/vi/khoa-cong-nghe-thong-tin)
-[Youth Union Member Management]
+# [🎓 Faculty of Information Technology (DaiNam University)](https://dainam.edu.vn/vi/nganh-dao-tao/cong-nghe-thong-tin)
+
+Youth Union Member Management
+
