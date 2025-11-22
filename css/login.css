@@ -1,0 +1,186 @@
+/* Nhom15/css/login.css */
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    --secondary-bg: #f0f2f5;
+    --input-bg: #fcfcfc;
+    --border-color: #e1e1e1;
+}
+
+body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background-color: var(--secondary-bg);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0; /* Reset margin mặc định */
+}
+
+/* Hiệu ứng nền động nhẹ nhàng */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 10% 20%, rgb(216, 241, 255) 0%, rgb(240, 242, 245) 90%);
+    z-index: -1;
+}
+
+.main-container {
+    width: 100%;
+    padding: 20px;
+}
+
+.login-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: none;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 600px;
+}
+
+/* --- CỘT HÌNH ẢNH (TRÁI) --- */
+.login-image-col {
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Họa tiết trang trí mờ */
+.login-image-col::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: -50px;
+    left: -50px;
+}
+.login-image-col::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    bottom: -50px;
+    right: -50px;
+}
+
+.login-image {
+    max-width: 85%;
+    height: auto;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    transition: transform 0.3s ease;
+}
+.login-image-col:hover .login-image {
+    transform: scale(1.05);
+}
+
+/* --- CỘT FORM (PHẢI) --- */
+.login-form-col {
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-section img {
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.login-title {
+    font-weight: 700;
+    color: #1a1a1a;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+/* Input Group Styling */
+.input-group-text {
+    border-radius: 10px 0 0 10px !important;
+    border: 1px solid var(--border-color);
+    border-right: none;
+    background-color: #fff;
+}
+
+.form-control {
+    border-radius: 0 10px 10px 0 !important;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-left: none; /* Liền mạch với icon */
+    background-color: var(--input-bg);
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.form-control:focus {
+    background-color: #fff;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
+    z-index: 1; /* Đè lên các element khác để hiển thị shadow */
+}
+/* Khi focus vào input, làm sáng viền icon bên cạnh */
+.form-control:focus + .input-group-text, 
+.input-group:focus-within .input-group-text {
+    border-color: #0d6efd;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+/* Nút Đăng Nhập */
+.btn-login {
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.4);
+    background: linear-gradient(135deg, #0b5ed7 0%, #0a58ca 100%);
+    color: #fff;
+}
+
+.copyright {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+    .login-image-col {
+        display: none;
+    }
+    .login-form-col {
+        padding: 2rem;
+    }
+    .login-card {
+        min-height: auto;
+        max-width: 500px;
+    }
+}

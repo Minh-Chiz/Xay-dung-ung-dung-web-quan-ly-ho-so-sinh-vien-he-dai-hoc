@@ -1,0 +1,289 @@
+/* 1. CẤU HÌNH CHUNG & FONT CHỮ */
+:root {
+    --primary-color: #0d6efd;
+    --primary-gradient: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    --bg-color: #f3f4f6;      /* Màu nền xám sáng dịu mắt */
+    --sidebar-width: 260px;
+    --text-color: #1f2937;    /* Màu chữ xám đen rõ nét */
+    --text-muted: #6b7280;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --hover-transform: translateY(-8px); /* Độ bay lên khi hover */
+}
+
+body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6em;
+    color: var(--text-muted);
+}
+
+/* 2. LAYOUT CHÍNH */
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    min-height: 100vh;
+}
+
+/* 3. SIDEBAR (THANH BÊN) */
+#sidebar {
+    min-width: var(--sidebar-width);
+    max-width: var(--sidebar-width);
+    background: #fff;
+    color: var(--text-color);
+    transition: all 0.3s;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+#sidebar.active {
+    margin-left: calc(var(--sidebar-width) * -1);
+}
+
+#sidebar .sidebar-header {
+    padding: 25px 20px;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+}
+
+#sidebar .sidebar-header h5 {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0;
+    font-size: 1.1rem;
+}
+
+#sidebar ul.components {
+    padding: 15px 10px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+#sidebar ul li {
+    margin-bottom: 5px;
+}
+
+#sidebar ul li a {
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    color: #4b5563;
+    text-decoration: none;
+    transition: all 0.3s;
+    border-radius: 8px;
+    margin: 0 5px;
+    font-weight: 500;
+}
+
+#sidebar ul li a i {
+    font-size: 1.2rem;
+    margin-right: 12px;
+    width: 24px;
+    text-align: center;
+    color: #9ca3af;
+    transition: color 0.3s;
+}
+
+/* Hiệu ứng Hover menu */
+#sidebar ul li a:hover {
+    color: var(--primary-color);
+    background: rgba(13, 110, 253, 0.08);
+}
+#sidebar ul li a:hover i {
+    color: var(--primary-color);
+}
+
+/* Trạng thái Active */
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: var(--primary-gradient);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+#sidebar ul li.active > a i {
+    color: #fff;
+}
+
+#sidebar .user-info {
+    padding: 20px;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    font-size: 0.9em;
+    margin-top: auto;
+}
+
+/* 4. CONTENT (NỘI DUNG CHÍNH) */
+#content {
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+    padding: 2rem;
+    margin-left: var(--sidebar-width);
+    padding-bottom: 80px;
+}
+
+/* 5. NÂNG CẤP GIAO DIỆN (Card, Table, Form) */
+
+/* Thẻ Card Chung */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    background: #fff;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hiệu ứng bay lên cho thẻ thống kê */
+.col-lg-3 .card:hover, 
+.col-md-4 .card:hover {
+    transform: var(--hover-transform);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+/* Dashboard Stats Icons */
+.card .fs-1 {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.04);
+    margin-right: 1rem !important;
+}
+.text-primary.fs-1 { background-color: rgba(13, 110, 253, 0.1); }
+.text-success.fs-1 { background-color: rgba(25, 135, 84, 0.1); }
+.text-warning.fs-1 { background-color: rgba(255, 193, 7, 0.1); }
+.text-danger.fs-1  { background-color: rgba(220, 53, 69, 0.1); }
+
+/* Tiêu đề & Form */
+h3 {
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    padding: 10px 15px;
+    font-size: 0.95rem;
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.btn {
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Bảng dữ liệu (TABLE) */
+.table-responsive {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    background: #fff;
+}
+
+.table { margin-bottom: 0; }
+
+.table thead th {
+    background-color: #f8f9fa;
+    color: #374151;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    padding: 16px;
+    border-bottom: 2px solid #e5e7eb;
+    border-top: none;
+}
+
+.table tbody td {
+    padding: 14px; /* Giảm nhẹ padding */
+    vertical-align: middle;
+    color: #4b5563;
+    border-bottom: 1px solid #e5e7eb; /* Viền mờ hơn */
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* --- TÙY CHỈNH VỊ TRÍ DỮ LIỆU --- */
+
+/* Căn giữa cột STT cho gọn */
+.table tbody tr td:first-child {
+    text-align: center;
+}
+
+/* Định nghĩa class cho cột điểm số để dễ căn chỉnh */
+.grade-column {
+    font-weight: 600 !important;
+    text-align: right; /* Căn phải điểm số */
+}
+
+/* --- TÙY CHỈNH NÚT HÀNH ĐỘNG TRONG BẢNG --- */
+.table td .btn {
+    box-shadow: none; /* Bỏ bóng đổ cho các nút nhỏ */
+    margin: 0 2px;
+    padding: 6px 8px; /* Giảm kích thước nút */
+    font-size: 0.75rem;
+}
+.table td .btn:hover {
+    transform: translateY(-1px);
+}
+
+
+/* 6. FOOTER */
+.footer {
+    position: fixed;
+    left: var(--sidebar-width);
+    bottom: 0;
+    width: calc(100% - var(--sidebar-width));
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    text-align: center;
+    padding: 15px 0;
+    border-top: 1px solid #e5e7eb;
+    font-size: 0.85em;
+    color: #6b7280;
+    z-index: 999;
+}
+
+/* 7. RESPONSIVE */
+@media (max-width: 768px) {
+    #sidebar { margin-left: calc(var(--sidebar-width) * -1); }
+    #sidebar.active { margin-left: 0; }
+    #content { margin-left: 0; padding: 1rem; padding-bottom: 80px; }
+    .footer { left: 0; width: 100%; }
+}
