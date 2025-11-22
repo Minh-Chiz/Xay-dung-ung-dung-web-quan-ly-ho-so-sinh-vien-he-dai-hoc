@@ -1,6 +1,6 @@
 <div align="center">
     
-# [🎓 Faculty of Information Technology (DaiNam University)](https://dainam.edu.vn/vi/nganh-dao-tao/cong-nghe-thong-tin)
+## [🎓 Faculty of Information Technology (DaiNam University)](https://dainam.edu.vn/vi/nganh-dao-tao/cong-nghe-thong-tin)
     
 ## Student Record Management
     
