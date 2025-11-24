@@ -29,9 +29,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         $pathPrefix = (strpos($_SERVER['PHP_SELF'], '/views/student/') !== false ||
                     strpos($_SERVER['PHP_SELF'], '/views/class/') !== false ||
                     strpos($_SERVER['PHP_SELF'], '/views/subject/') !== false ||
-                    strpos($_SERVER['PHP_SELF'], '/views/grade/') !== false) ? '../../' : '../';
+                    strpos($_SERVER['PHP_SELF'], '/views/grade/') !== false ||
+                    strpos($_SERVER['PHP_SELF'], '/views/user/') !== false) ? '../../' : '../';
     ?>
-    <link rel="stylesheet" href="<?php echo $pathPrefix; ?>css/sidebar.css">
+    <link rel="stylesheet" href="<?php echo $pathPrefix; ?>assets/css/sidebar.css">
     
     <title><?php echo $pageTitle ?? 'Quản lý Hồ sơ'; ?></title>
 </head>
@@ -41,7 +42,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <nav id="sidebar">
             <div class="sidebar-header">
                 <a href="<?php echo $pathPrefix; ?>views/dashboard.php" class="d-flex align-items-center text-decoration-none text-dark">
-                    <img src="<?php echo $pathPrefix; ?>images/fitdnu_logo.png" alt="FIT-DNU Logo" height="40" class="me-2"/>
+                    <img src="<?php echo $pathPrefix; ?>assets/images/fitdnu_logo.png" alt="FIT-DNU Logo" height="40" class="me-2"/>
                     <h5 class="mb-0">Quản lý Hồ sơ</h5>
                 </a>
             </div>
@@ -50,6 +51,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <li class="<?php echo ($currentPage == 'dashboard.php') ? 'active' : ''; ?>">
                     <a href="<?php echo $pathPrefix; ?>views/dashboard.php"><i class="bi bi-grid-fill me-2"></i>Dashboard</a>
                 </li>
+                
+                <?php if ($isAdmin): ?>
+                <li class="<?php echo ($currentPage == 'user.php') ? 'active' : ''; ?>">
+                    <a href="<?php echo $pathPrefix; ?>views/user.php">
+                        <i class="bi bi-person-lines-fill me-2"></i>Quản lý tài khoản
+                    </a>
+                </li>
+                <?php endif; ?>
                 
                 <?php // MENU QUẢN LÝ: Hiển thị cho cả Teacher và Admin ?>
                 <?php if ($isTeacher || $isAdmin): ?>
@@ -94,6 +103,11 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                         <small>(Vai trò: <?= htmlspecialchars(ucfirst($currentUser['role'])) ?>)</small>
                     </div>
                 <?php endif; ?>
+                
+                <a href="<?php echo $pathPrefix; ?>views/change_password.php" class="btn btn-outline-primary btn-sm w-100 mb-2">
+                    <i class="bi bi-key me-2"></i> Đổi mật khẩu
+                </a>
+
                 <a href="<?php echo $pathPrefix; ?>handle/logout_process.php" class="btn btn-outline-danger btn-sm w-100">
                     <i class="bi bi-box-arrow-right me-2"></i> Đăng xuất
                 </a>

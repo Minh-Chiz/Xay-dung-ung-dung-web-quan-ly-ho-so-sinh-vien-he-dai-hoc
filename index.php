@@ -21,7 +21,7 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['username'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./assets/css/login.css">
 </head>
 
 <body>
@@ -31,26 +31,26 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['username'])) {
             <div class="row g-0 h-100">
                 
                 <div class="col-lg-6 login-image-col">
-                    <img src="./images/draw2.webp" alt="Login illustration" class="login-image">
+                    <img src="./assets/images/draw2.webp" alt="Login illustration" class="login-image">
                 </div>
                 
                 <div class="col-lg-6 login-form-col">
                     
                     <div class="logo-section text-center text-lg-start">
-                        <img src="./images/fitdnu_logo.png" alt="Logo FIT DNU">
+                        <img src="./assets/images/fitdnu_logo.png" alt="Logo FIT DNU">
                         <h1 class="login-title">Chào mừng trở lại!</h1>
                         <p class="text-muted mb-4">Vui lòng đăng nhập để quản lý hồ sơ.</p>
                     </div>
 
                     <?php if (isset($_SESSION['error'])): ?>
-                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <div class="alert alert-danger d-flex align-items-center animate-fade-in" role="alert">
                             <i class="bi bi-exclamation-triangle-fill me-2"></i>
                             <div><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
                         </div>
                     <?php endif; ?>
                     
                     <?php if (isset($_SESSION['success'])): ?>
-                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                        <div class="alert alert-success d-flex align-items-center animate-fade-in" role="alert">
                             <i class="bi bi-check-circle-fill me-2"></i>
                             <div><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
                         </div>
@@ -77,6 +77,10 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['username'])) {
                                 <input type="password" name="password" id="password" class="form-control"
                                     placeholder="Nhập mật khẩu" required />
                             </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end mb-3">
+                            <a href="./views/forgot_password.php" class="text-decoration-none small">Quên mật khẩu?</a>
                         </div>
 
                         <div class="d-grid pt-2">

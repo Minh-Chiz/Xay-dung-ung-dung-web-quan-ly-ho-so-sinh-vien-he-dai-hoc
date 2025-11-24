@@ -126,4 +126,95 @@ function authenticateUser($conn, $username, $password){
         return false;
 }
 
+/**
+ * Thay đổi mật khẩu người dùng
+ * @param int $userId ID người dùng
+ * @param string $currentPassword Mật khẩu hiện tại (nhập từ form)
+ * @param string $newPassword Mật khẩu mới
+ * @return array ['success' => bool, 'message' => string]
+ */
+function changeUserPassword($userId, $currentPassword, $newPassword) {
+    $conn = getDbConnection();
+    
+    // 1. Lấy mật khẩu hiện tại trong DB để kiểm tra
+    $sql = "SELECT password FROM users WHERE id = ? LIMIT 1";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $user = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+
+    if (!$user) {
+        mysqli_close($conn);
+        return ['success' => false, 'message' => 'Người dùng không tồn tại.'];
+    }
+
+    // 2. So sánh mật khẩu cũ (Lưu ý: Hệ thống hiện tại đang dùng plain text, chưa mã hóa)
+    // Nếu sau này bạn nâng cấp lên password_hash, hãy đổi thành password_verify()
+    if ($currentPassword !== $user['password']) {
+        mysqli_close($conn);
+        return ['success' => false, 'message' => 'Mật khẩu hiện tại không chính xác.'];
+    }
+
+    // 3. Cập nhật mật khẩu mới
+    $updateSql = "UPDATE users SET password = ? WHERE id = ?";
+    $updateStmt = mysqli_prepare($conn, $updateSql);
+    mysqli_stmt_bind_param($updateStmt, "si", $newPassword, $userId);
+    $updateSuccess = mysqli_stmt_execute($updateStmt);
+    mysqli_stmt_close($updateStmt);
+    mysqli_close($conn);
+
+    if ($updateSuccess) {
+        return ['success' => true, 'message' => 'Đổi mật khẩu thành công.'];
+    } else {
+        return ['success' => false, 'message' => 'Lỗi hệ thống, không thể cập nhật mật khẩu.'];
+    }
+}
+
+/**
+ * Đặt lại mật khẩu cho sinh viên nếu thông tin xác thực đúng
+ * @param string $username Mã sinh viên (Tên đăng nhập)
+ * @param string $email Email đã đăng ký
+ * @param string $newPassword Mật khẩu mới
+ * @return array ['success' => bool, 'message' => string]
+ */
+function resetStudentPassword($username, $email, $newPassword) {
+    $conn = getDbConnection();
+
+    // 1. Kiểm tra xem Mã SV và Email có khớp trong bảng students không
+    // Lưu ý: Chúng ta join với bảng users để đảm bảo tài khoản tồn tại
+    $sql = "SELECT s.id 
+            FROM students s
+            JOIN users u ON s.student_code = u.username
+            WHERE s.student_code = ? AND s.email = ? LIMIT 1";
+            
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $student = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+
+    if (!$student) {
+        mysqli_close($conn);
+        return ['success' => false, 'message' => 'Thông tin không chính xác. Vui lòng kiểm tra Mã sinh viên và Email.'];
+    }
+
+    // 2. Nếu thông tin đúng, cập nhật mật khẩu trong bảng users
+    $updateSql = "UPDATE users SET password = ? WHERE username = ?";
+    $updateStmt = mysqli_prepare($conn, $updateSql);
+    mysqli_stmt_bind_param($updateStmt, "ss", $newPassword, $username);
+    $success = mysqli_stmt_execute($updateStmt);
+    
+    mysqli_stmt_close($updateStmt);
+    mysqli_close($conn);
+
+    if ($success) {
+        return ['success' => true, 'message' => 'Mật khẩu đã được đặt lại thành công. Bạn có thể đăng nhập ngay.'];
+    } else {
+        return ['success' => false, 'message' => 'Lỗi hệ thống. Vui lòng thử lại sau.'];
+    }
+}
+
 ?>

@@ -1,12 +1,12 @@
 :root {
     --primary-color: #0d6efd;
     --primary-gradient: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
-    --bg-color: #f3f4f6;      /* Màu nền xám sáng dịu mắt */
+    --bg-color: #f3f4f6;
     --sidebar-width: 260px;
-    --text-color: #1f2937;    /* Màu chữ xám đen rõ nét */
+    --text-color: #1f2937;
     --text-muted: #6b7280;
     --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --hover-transform: translateY(-8px); /* Độ bay lên khi hover */
+    --hover-transform: translateY(-8px);
 }
 
 body {
@@ -97,7 +97,6 @@ p {
     transition: color 0.3s;
 }
 
-/* Hiệu ứng Hover menu */
 #sidebar ul li a:hover {
     color: var(--primary-color);
     background: rgba(13, 110, 253, 0.08);
@@ -106,7 +105,6 @@ p {
     color: var(--primary-color);
 }
 
-/* Trạng thái Active */
 #sidebar ul li.active > a,
 a[aria-expanded="true"] {
     color: #fff;
@@ -134,7 +132,6 @@ a[aria-expanded="true"] {
     padding-bottom: 80px;
 }
 
-/* Thẻ Card Chung */
 .card {
     border: none;
     border-radius: 12px;
@@ -145,7 +142,6 @@ a[aria-expanded="true"] {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hiệu ứng bay lên cho thẻ thống kê */
 .col-lg-3 .card:hover, 
 .col-md-4 .card:hover {
     transform: var(--hover-transform);
@@ -153,7 +149,6 @@ a[aria-expanded="true"] {
     cursor: pointer;
 }
 
-/* Dashboard Stats Icons */
 .card .fs-1 {
     width: 50px;
     height: 50px;
@@ -169,7 +164,6 @@ a[aria-expanded="true"] {
 .text-warning.fs-1 { background-color: rgba(255, 193, 7, 0.1); }
 .text-danger.fs-1  { background-color: rgba(220, 53, 69, 0.1); }
 
-/* Tiêu đề & Form */
 h3 {
     font-weight: 700;
     color: #111827;
@@ -200,7 +194,6 @@ h3 {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Bảng dữ liệu (TABLE) */
 .table-responsive {
     border-radius: 12px;
     overflow: hidden;
@@ -223,38 +216,34 @@ h3 {
 }
 
 .table tbody td {
-    padding: 14px; /* Giảm nhẹ padding */
+    padding: 14px;
     vertical-align: middle;
     color: #4b5563;
-    border-bottom: 1px solid #e5e7eb; /* Viền mờ hơn */
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .table-hover tbody tr:hover {
     background-color: #f9fafb;
 }
 
-/* Căn giữa cột STT cho gọn */
 .table tbody tr td:first-child {
     text-align: center;
 }
 
-/* Định nghĩa class cho cột điểm số để dễ căn chỉnh */
 .grade-column {
     font-weight: 600 !important;
-    text-align: right; /* Căn phải điểm số */
+    text-align: right;
 }
 
-/* --- TÙY CHỈNH NÚT HÀNH ĐỘNG TRONG BẢNG --- */
 .table td .btn {
-    box-shadow: none; /* Bỏ bóng đổ cho các nút nhỏ */
+    box-shadow: none;
     margin: 0 2px;
-    padding: 6px 8px; /* Giảm kích thước nút */
+    padding: 6px 8px;
     font-size: 0.75rem;
 }
 .table td .btn:hover {
     transform: translateY(-1px);
 }
-
 
 .footer {
     position: fixed;
@@ -278,28 +267,13 @@ h3 {
     .footer { left: 0; width: 100%; }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fade-in {
-    animation: fadeInUp 0.6s ease-out forwards;
-}
-
 .table-hover tbody tr {
     transition: all 0.2s ease-in-out;
 }
 
 .table-hover tbody tr:hover {
-    background-color: rgba(13, 110, 253, 0.05) !important; /* Màu xanh rất nhạt */
-    transform: scale(1.005); /* Phóng to cực nhẹ tạo cảm giác nổi */
+    background-color: rgba(13, 110, 253, 0.05) !important;
+    transform: scale(1.005);
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     z-index: 1;
     position: relative;
@@ -311,7 +285,6 @@ h3 {
     overflow: hidden;
 }
 
-/* Hiệu ứng gợn sóng nhẹ khi bấm */
 .btn:active {
     transform: scale(0.95);
 }
@@ -321,21 +294,7 @@ div:where(.swal2-container) div:where(.swal2-popup) {
     box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
 }
 
-#sidebar ul li {
-    /* Đặt vị trí tương đối để animation hoạt động mượt mà */
-    position: relative;
-    /* Hiệu ứng xuất hiện lần lượt (Waterfall effect) */
-    animation: slideInMenu 0.5s ease forwards;
-    opacity: 0; /* Ẩn mặc định trước khi chạy animation */
-    transform: translateX(-20px);
-}
-
-/* Tạo độ trễ (delay) cho từng mục để chúng bay vào lần lượt */
-#sidebar ul li:nth-child(1) { animation-delay: 0.1s; }
-#sidebar ul li:nth-child(2) { animation-delay: 0.2s; }
-#sidebar ul li:nth-child(3) { animation-delay: 0.3s; }
-#sidebar ul li:nth-child(4) { animation-delay: 0.4s; }
-#sidebar ul li:nth-child(5) { animation-delay: 0.5s; }
+/* Animation cho menu sidebar */
 
 @keyframes slideInMenu {
     from {
@@ -349,18 +308,14 @@ div:where(.swal2-container) div:where(.swal2-popup) {
 }
 
 #sidebar ul li a {
-    /* Thêm transition cho transform để chuyển động mượt */
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 #sidebar ul li a:hover {
-    /* Dịch chuyển sang phải 10px */
     transform: translateX(10px);
-    /* Đổi màu nền nhẹ */
     background-color: rgba(13, 110, 253, 0.05);
 }
 
-/* Hiệu ứng cho Icon khi hover (Rung nhẹ hoặc phóng to) */
 #sidebar ul li a:hover i {
     transform: scale(1.2) rotate(5deg);
     color: var(--primary-color);
@@ -368,13 +323,10 @@ div:where(.swal2-container) div:where(.swal2-popup) {
 }
 
 #sidebar ul li.active > a {
-    /* Nổi lên nhẹ và dịch sang phải một chút */
     transform: translateX(10px) scale(1.02);
-    /* Bóng đổ 3D đẹp hơn */
     box-shadow: 4px 4px 20px rgba(13, 110, 253, 0.4);
 }
 
-/* Thêm hiệu ứng phát sáng nhẹ (Pulse) cho nút Active */
 @keyframes pulseGlow {
     0% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.4); }
     70% { box-shadow: 0 0 0 10px rgba(13, 110, 253, 0); }

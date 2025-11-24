@@ -5,14 +5,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     
-    // 1. HIỆU ỨNG FADE-IN KHI TẢI TRANG
-    // Thêm class .fade-in vào thẻ body hoặc container chính
-    const contentContainer = document.querySelector('.card') || document.querySelector('.container-fluid');
-    if (contentContainer) {
-        contentContainer.classList.add('animate-fade-in');
-    }
-
-    // 2. TỰ ĐỘNG BIẾN NÚT XÓA CÓ CONFIRM THÀNH SWEETALERT2 ĐẸP MẮT
     // Tìm tất cả thẻ <a> có chứa onclick="return confirm(...)"
     const confirmLinks = document.querySelectorAll('a[onclick*="return confirm"]');
     
@@ -63,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 3. HIỆU ỨNG LOADING CHO CÁC FORM
     const forms = document.querySelectorAll('form');
     forms.forEach(form => {
         form.addEventListener('submit', function() {

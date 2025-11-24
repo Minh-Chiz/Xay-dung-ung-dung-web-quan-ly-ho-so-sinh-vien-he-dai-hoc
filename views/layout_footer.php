@@ -13,12 +13,13 @@
         $jsPathPrefix = (strpos($_SERVER['PHP_SELF'], '/views/student/') !== false ||
                     strpos($_SERVER['PHP_SELF'], '/views/class/') !== false ||
                     strpos($_SERVER['PHP_SELF'], '/views/subject/') !== false ||
-                    strpos($_SERVER['PHP_SELF'], '/views/grade/') !== false) ? '../../' : '../';
+                    strpos($_SERVER['PHP_SELF'], '/views/grade/') !== false ||
+                    strpos($_SERVER['PHP_SELF'], '/views/user/') !== false) ? '../../' : '../';
     ?>
-    <script src="<?php echo $jsPathPrefix; ?>js/main.js"></script>
+    <script src="<?php echo $jsPathPrefix; ?>assets/js/main.js"></script>
 
     <script>
-    // Script tự động ẩn thông báo (giữ nguyên logic cũ của bạn nhưng viết gọn hơn)
+    // Script tự động ẩn thông báo
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => {
             let alertNode = document.querySelector('.alert-dismissible');
@@ -26,7 +27,7 @@
                 let bsAlert = new bootstrap.Alert(alertNode);
                 bsAlert.close();
             }
-        }, 4000); // Tăng lên 4 giây cho dễ đọc
+        }, 4000); 
     });
     </script>
 </body>

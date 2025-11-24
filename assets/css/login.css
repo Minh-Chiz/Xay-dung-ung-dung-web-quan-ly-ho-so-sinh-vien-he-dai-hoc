@@ -1,4 +1,4 @@
-/* Nhom15/css/login.css */
+/* Nhom15/assets/css/login.css */
 
 :root {
     --primary-gradient: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
@@ -10,14 +10,14 @@
 body {
     font-family: 'Be Vietnam Pro', sans-serif;
     background-color: var(--secondary-bg);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0; /* Reset margin mặc định */
+    margin: 0;
+    padding: 20px;
 }
 
-/* Hiệu ứng nền động nhẹ nhàng */
 body::before {
     content: '';
     position: absolute;
@@ -28,7 +28,8 @@ body::before {
 
 .main-container {
     width: 100%;
-    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .login-card {
@@ -37,8 +38,6 @@ body::before {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     border: none;
-    max-width: 1000px;
-    margin: 0 auto;
     min-height: 600px;
 }
 
@@ -50,9 +49,9 @@ body::before {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    padding: 20px;
 }
 
-/* Họa tiết trang trí mờ */
 .login-image-col::after {
     content: '';
     position: absolute;
@@ -75,7 +74,7 @@ body::before {
 }
 
 .login-image {
-    max-width: 85%;
+    max-width: 90%;
     height: auto;
     position: relative;
     z-index: 2;
@@ -97,6 +96,7 @@ body::before {
 .logo-section img {
     height: 60px;
     margin-bottom: 15px;
+    object-fit: contain;
 }
 
 .login-title {
@@ -106,7 +106,6 @@ body::before {
     margin-bottom: 5px;
 }
 
-/* Input Group Styling */
 .input-group-text {
     border-radius: 10px 0 0 10px !important;
     border: 1px solid var(--border-color);
@@ -118,7 +117,7 @@ body::before {
     border-radius: 0 10px 10px 0 !important;
     padding: 12px 15px;
     border: 1px solid var(--border-color);
-    border-left: none; /* Liền mạch với icon */
+    border-left: none;
     background-color: var(--input-bg);
     font-size: 0.95rem;
     transition: all 0.3s;
@@ -128,9 +127,9 @@ body::before {
     background-color: #fff;
     border-color: #0d6efd;
     box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
-    z-index: 1; /* Đè lên các element khác để hiển thị shadow */
+    z-index: 1;
 }
-/* Khi focus vào input, làm sáng viền icon bên cạnh */
+
 .form-control:focus + .input-group-text, 
 .input-group:focus-within .input-group-text {
     border-color: #0d6efd;
@@ -143,7 +142,6 @@ body::before {
     margin-bottom: 8px;
 }
 
-/* Nút Đăng Nhập */
 .btn-login {
     background: var(--primary-gradient);
     border: none;
@@ -171,7 +169,7 @@ body::before {
     color: #888;
 }
 
-/* Responsive */
+
 @media (max-width: 991.98px) {
     .login-image-col {
         display: none;
@@ -181,6 +179,5 @@ body::before {
     }
     .login-card {
         min-height: auto;
-        max-width: 500px;
     }
 }
